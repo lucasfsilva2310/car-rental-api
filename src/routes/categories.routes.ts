@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express'
-import { createCategoryController } from '../modules/cars/useCases/createCategory/index'
+import { createCategoryController } from '../modules/cars/useCases/createCategory'
 import { getAllCategoriesController } from '../modules/cars/useCases/getAllCategories'
 
 const categoriesRoutes = Router()

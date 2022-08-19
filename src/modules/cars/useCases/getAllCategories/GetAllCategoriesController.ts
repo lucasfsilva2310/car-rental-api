@@ -1,11 +1,11 @@
 import { Response, Request } from 'express'
-import { ICategoriesRepository } from '../../repositories/ICategoriesRepository'
+import { GetAllCategoriesUseCase } from './GetAllCategoriesUseCase'
 
 class GetAllCategoriesController {
-  constructor(private categoriesRepository: ICategoriesRepository) {}
+  constructor(private getAllCategoriesUseCase: GetAllCategoriesUseCase) {}
 
   handle(request: Request, response: Response): Response {
-    const result = this.categoriesRepository.getAllCategories()
+    const result = this.getAllCategoriesUseCase.execute()
 
     return response.status(200).json({ status: 'success', categories: result })
   }
