@@ -1,14 +1,25 @@
-import { Specification } from '../models/Specification'
+import { Specification } from '../../models/Specification'
 import {
   ICreateSpecificationDTO,
-  ISpeficiationsRepository
-} from './ISpecificationRepository'
+  ISpecificationRepository
+} from '../ISpecificationRepository'
 
-class SpecificationsRepository implements ISpeficiationsRepository {
+class SpecificationsRepository implements ISpecificationRepository {
   private specifications: Array<Specification>
 
-  constructor() {
+  // Way to check if instance already exists
+  private static INSTANCE: SpecificationsRepository
+
+  private constructor() {
     this.specifications = []
+  }
+
+  public static getInstance(): SpecificationsRepository {
+    const alreadyExists = SpecificationsRepository.INSTANCE
+    if (!alreadyExists) {
+      SpecificationsRepository.INSTANCE = new SpecificationsRepository()
+    }
+    return SpecificationsRepository.INSTANCE
   }
 
   create({ description, name }: ICreateSpecificationDTO): Specification {
@@ -23,6 +34,10 @@ class SpecificationsRepository implements ISpeficiationsRepository {
     this.specifications.push(specification)
 
     return specification
+  }
+
+  getAllSpecifications() {
+    return this.specifications
   }
 
   findByName(name: string): Specification | undefined {

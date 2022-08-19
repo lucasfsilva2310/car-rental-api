@@ -1,7 +1,7 @@
 import express from 'express'
 import { categoriesRoutes } from './routes/categories.routes'
 import { Application } from 'express'
-import { specificationRoutes } from './routes/specifiation.routes'
+import { specificationRoutes } from './routes/specification.routes'
 
 const app = express()
 
