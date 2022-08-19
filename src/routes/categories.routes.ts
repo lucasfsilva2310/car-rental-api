@@ -5,6 +5,7 @@ import { Router, Request, Response } from 'express'
 
 import { createCategoryController } from '../modules/cars/useCases/createCategory'
 import { getAllCategoriesController } from '../modules/cars/useCases/getAllCategories'
+import { importCategoriesController } from '../modules/cars/useCases/uploadCategories'
 
 const categoriesRoutes = Router()
 const uploadFile = multer({
@@ -24,11 +25,7 @@ categoriesRoutes.post(
   '/upload',
   uploadFile.single('categories'),
   (request: Request, response: Response) => {
-    const { file } = request
-    console.log(file)
-    return response
-      .status(201)
-      .json({ status: 'success', message: 'File uploaded.' })
+    importCategoriesController.handle(request, response)
   }
 )
 
