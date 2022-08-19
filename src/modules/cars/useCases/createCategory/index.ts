@@ -3,7 +3,8 @@ import { CreateCategoryController } from './CreateCategoryController'
 import { CreateCategoryUseCase } from './CreateCategoryUseCase'
 
 // Repository that already has all methods about category model and to access our DB
-const categoriesRepository = new CategoriesRepository()
+// created getInstance function to check if an instance already exists (singleton pattern)
+const categoriesRepository = CategoriesRepository.getInstance()
 
 // UseCase that has all useCases related to category inside our API
 const createCategoryUseCase = new CreateCategoryUseCase(categoriesRepository)

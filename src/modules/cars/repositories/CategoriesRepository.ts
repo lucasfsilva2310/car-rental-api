@@ -7,8 +7,19 @@ import {
 class CategoriesRepository implements ICategoriesRepository {
   private categories: Array<Category>
 
-  constructor() {
+  // Way to check if instance already exists
+  private static INSTANCE: CategoriesRepository
+
+  private constructor() {
     this.categories = []
+  }
+
+  public static getInstance(): CategoriesRepository {
+    const alreadyExists = CategoriesRepository.INSTANCE
+    if (!alreadyExists) {
+      CategoriesRepository.INSTANCE = new CategoriesRepository()
+    }
+    return CategoriesRepository.INSTANCE
   }
 
   create({ name, description }: ICreateCategoryDTO): Category {
