@@ -25,7 +25,7 @@ class CategoriesRepository implements ICategoriesRepository {
     return category
   }
 
-  getList() {
+  getAllCategories() {
     return this.categories
   }
 
