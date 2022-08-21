@@ -34,7 +34,12 @@ class ImportCategoriesUseCase {
             description
           })
         })
-        .on('end', () => resolve(categories))
+        .on('end', () => {
+          // Remove file from tpm folder before finishing request
+          fs.promises.unlink(file.path)
+
+          resolve(categories)
+        })
         .on('error', (error) => reject(error))
     })
 
