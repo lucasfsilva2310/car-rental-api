@@ -1,0 +1,317 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Car rental API Documentation",
+        "description": "This is an car rental API",
+        "version": "1.0.0",
+        "contact": {
+            "email": "lucasfsilva2310@gmail.com"
+                    }    
+            },
+    "paths": {
+        "/categories" : {
+            "post": {
+                "tags":["Category"],
+                "summary": "Create new category",
+                "description": "Create a new category based on name and description provider from requestbody",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "SUV",
+                                    "description": "SUV Car"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Category Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status":{
+                                            "type": "string"
+                                        },
+                                        "category": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "description": {
+                                                    "type": "string"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "status": "success",
+                                        "category": {
+                                            "id": "8271o-29ndf-19snd2",
+                                            "name": "SUV",
+                                            "description": "SUV Car",
+                                            "created_at": "2022-08-21T16:52:09.489Z"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "501": {
+                        "description": "Category already exists",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "status": "error",
+                                        "message": "Category already exists."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Category"],
+                "summary": "List all categories",
+                "description": "List all existing categories",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "categories": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": {
+                                                        "type": "string"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string"
+                                                    }          
+                                                }
+                                            }
+                                        }
+                                    },                          
+                                    "example": {
+                                        "status": "success",
+                                        "categories": [
+                                            {
+                                                "id": "cc73ba05-594b-4a5d-b84d-ffd2802cde0c",
+                                                "name": "SUV",
+                                                "description": "A Sport Utility Vehicle(SUV) is defined by its off-road capabilities and roominess.",
+                                                "created_at": "2022-08-21T17:11:12.863Z"
+                                            },
+                                            {
+                                                "id": "46d235f1-20a4-434d-b7fc-7082e847f923",
+                                                "name": "Crossover",
+                                                "description": "Crossovers have the practicality of an SUV but also come with superb fuel efficiency like hatchbacks do.",
+                                                "created_at": "2022-08-21T17:11:19.114Z"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/specifications" : {
+            "post": {
+                "tags":["Specification"],
+                "summary": "Create new specification",
+                "description": "Create a new specification based on name and description provider from requestbody",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "4x4",
+                                    "description": "traction 4x4"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Specification Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status":{
+                                            "type": "string"
+                                        },
+                                        "category": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "description": {
+                                                    "type": "string"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "status": "success",
+                                        "category": {
+                                            "id": "8271o-29ndf-19snd2",
+                                            "name": "4x4",
+                                            "description": "traction 4x4",
+                                            "created_at": "2022-08-21T16:52:09.489Z"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "501": {
+                        "description": "Specification already exists",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "status": "error",
+                                        "message": "Specification already exists."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Specification"],
+                "summary": "List all specifications",
+                "description": "List all existing specifications",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "specifications": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": {
+                                                        "type": "string"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string"
+                                                    }          
+                                                }
+                                            }
+                                        }
+                                    },                          
+                                    "example": {
+                                        "status": "success",
+                                        "specifications": [
+                                            {
+                                                "id": "cc73ba05-594b-4a5d-b84d-ffd2802cde0c",
+                                                "name": "4x4",
+                                                "description": "traction 4x4",
+                                                "created_at": "2022-08-21T17:11:12.863Z"
+                                            },
+                                            {
+                                                "id": "46d235f1-20a4-434d-b7fc-7082e847f923",
+                                                "name": "ABS",
+                                                "description": "Anti-Lock Braking System.",
+                                                "created_at": "2022-08-21T17:11:19.114Z"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
