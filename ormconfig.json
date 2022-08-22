@@ -1,0 +1,7 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "username": "docker",
+    "password": "docker",
+    "database": "database_car_rental"
+}

@@ -1,0 +1,77 @@
+# building container through docker-compose
+# docker-compose up
+
+#  to stop specific container
+#  docker ps to list all containers
+#  docker stop <container_id>
+
+#  to remove specific container
+# docker ps to list all containers
+#  docker rm <container_id>
+
+#  to start specific container
+#  docker ps to list all containers
+#  docker start <container_id>
+
+# to stop ALL containers
+# docker-compose stop
+
+#  to remove ALL containers
+#  docker-compose down
+
+# docker-compose version
+version: "3.7"
+
+# available services (app/db)
+services:
+
+# Database Service
+  database_car_rental:
+    # Database Image
+    image: postgres
+    # Container name
+    container_name: database_car_rental
+    # option to always restart container if its stopped
+    restart: always
+    # ports we intend to use (default for postgres 5432)
+    ports:
+      - 5432:5432
+    # environment variables
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=car_rental
+    # Where all needed info is going to be saved (same as app services below)
+    # we need to declare pgdata first at the end of the file
+    volumes:
+    - pgdata:/data/postgres
+
+# APP Service
+  app:
+    # Showing that docker-compose will search for dockerfile at root
+    build: .
+    # container name
+    container_name: car-rental
+    # Ports that we're intend to use
+    ports:
+      - 3333:3333
+    # Where are all needed info / : / where do we want to send that info afterwards
+    volumes:
+      - .:/usr/app
+    # because our application depends on our local database, we need to show docker-compose that
+    # by using links we are showing docker that the app service is going to use our database info
+    links:
+      - database_car_rental
+    #  by using depends_on we're showing docker that our app service DEPENDS on our database
+    depends_on:
+      - database_car_rental
+  # link https://www.notion.so/Refatora-o-Docker-com-TypeORM-4500fc0d075349ac9b97d670e734d41b
+    
+    
+# declaring pgdata as local driver because we're running our db locally
+volumes:
+  pgdata:
+    driver: local
+
+# to run our container locally
+# docker-compose up --force-recreate
