@@ -1,7 +1,11 @@
 {
     "type": "postgres",
-    "host": "localhost",
+    "host": "db", 
     "username": "docker",
     "password": "docker",
-    "database": "database_car_rental"
+    "port": 5432,
+    "database": "car_rental",
+    "cli": {
+        "migrationsDir": "src/database/migrations"
+    }
 }
