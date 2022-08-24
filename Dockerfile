@@ -17,7 +17,7 @@ COPY . .
 EXPOSE 3333
 
 # starting server
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start"]
 
 # building application
 # docker build -t <app_name> <directory>

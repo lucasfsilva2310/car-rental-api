@@ -11,7 +11,7 @@
   "rules": {
     "@typescript-eslint/no-non-null-assertion": 0,
     "no-unused-vars": 0,
-    "unused-imports/no-unused-imports": 2,
+    "unused-imports/no-unused-imports": 0,
     "no-console": 0, // Warning about console.logs - 2 is Error and 0 is Off
     "prettier/prettier": 2 // Error when is not formatted through prettier
   }
